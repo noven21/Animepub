@@ -7,6 +7,7 @@ import {
 	compose,
 } from 'redux';
 import thunk from 'redux-thunk';
+import './index.css';
 
 import reducers from './reducers';
 
