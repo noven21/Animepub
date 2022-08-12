@@ -14,7 +14,10 @@ import moment from 'moment';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { useDispatch } from 'react-redux';
 
-import { deletePost } from '../../../actions/posts';
+import {
+	deletePost,
+	likePost,
+} from '../../../actions/posts';
 
 const Post = ({ post, setCurrentId }) => {
 	const classes = useStyles();
@@ -68,7 +71,9 @@ const Post = ({ post, setCurrentId }) => {
 				<Button
 					size='small'
 					color='primary'
-					onClick={() => {}}
+					onClick={() =>
+						dispatch(likePost(post._id))
+					}
 				>
 					<ThubmUpAltIcon fontSize='small' />
 					Like
