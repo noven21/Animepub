@@ -1,3 +1,9 @@
+import {
+	FETCH_ALL,
+	CREATE,
+	UPDATE,
+	DELETE,
+} from '../constants/actionTypes';
 import * as api from '../api';
 
 // Action creators
@@ -6,7 +12,7 @@ export const getPosts =
 		try {
 			const { data } = await api.fetchPosts();
 			dispatch({
-				type: 'FETCH_ALL',
+				type: FETCH_ALL,
 				payload: data,
 			});
 		} catch (error) {
@@ -19,7 +25,7 @@ export const createPost =
 		try {
 			const { data } = await api.createPost(post);
 
-			dispatch({ type: 'CREATE', payload: data });
+			dispatch({ type: CREATE, payload: data });
 		} catch (error) {
 			console.log(error);
 		}
@@ -33,7 +39,7 @@ export const updatePost =
 				post
 			);
 
-			dispatch({ type: 'UPDATE', payload: data });
+			dispatch({ type: UPDATE, payload: data });
 		} catch (error) {
 			console.log(error);
 		}
@@ -44,7 +50,7 @@ export const deletePost =
 		try {
 			await api.deletePost(id);
 
-			dispatch({ type: 'DELETE', payload: id });
+			dispatch({ type: DELETE, payload: id });
 		} catch (error) {
 			console.log(error);
 		}
@@ -55,7 +61,7 @@ export const likePost =
 		try {
 			const { data } = await api.likePost(id);
 
-			dispatch({ type: 'UPDATE', payload: data });
+			dispatch({ type: UPDATE, payload: data });
 		} catch (error) {
 			console.log(error);
 		}

@@ -44,7 +44,7 @@ const Post = ({ post, setCurrentId }) => {
 					size='small'
 					onClick={() => setCurrentId(post._id)}
 				>
-					<MoreHorizIcon fontSize='default' />
+					<MoreHorizIcon fontSize='medium' />
 				</Button>
 			</div>
 			<div className={classes.details}>
@@ -63,11 +63,17 @@ const Post = ({ post, setCurrentId }) => {
 				{post.title}
 			</Typography>
 			<CardContent>
-				<Typography variant='h5' gutterBottom>
+				<Typography
+					variant='body2'
+					color='textSecondary'
+					component='p'
+				>
 					{post.message}
 				</Typography>
 			</CardContent>
-			<CardActions className={classes.cardAction}>
+			<CardActions
+				className={classes.cardActions}
+			>
 				<Button
 					size='small'
 					color='primary'
@@ -76,7 +82,7 @@ const Post = ({ post, setCurrentId }) => {
 					}
 				>
 					<ThubmUpAltIcon fontSize='small' />
-					Like
+					&nbsp; Like &nbsp;
 					{post.likeCount}
 				</Button>
 				<Button
