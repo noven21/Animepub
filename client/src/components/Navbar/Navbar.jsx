@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {
+	useState,
+	useEffect,
+} from 'react';
 import { Link } from 'react-router-dom';
 import {
 	AppBar,
@@ -11,8 +14,21 @@ import useStyles from './styles';
 
 const Navbar = () => {
 	const classes = useStyles();
+	const [user, setUser] = useState(
+		JSON.parse(localStorage.getItem('profile'))
+	);
 
-	const user = null;
+	console.log(user);
+
+	useEffect(() => {
+		const token = user?.token;
+
+		setUser(
+			JSON.parse(localStorage.getItem('profile'))
+		);
+	}, []);
+
+	// const user = null;
 
 	return (
 		<AppBar
@@ -37,7 +53,7 @@ const Navbar = () => {
 						<Avatar
 							className={classes.purple}
 							alt={user.result.name}
-							src={user.result.imageUrl}
+							src={user.result.picture}
 						>
 							{user.result.name.charAt[0]}
 						</Avatar>
