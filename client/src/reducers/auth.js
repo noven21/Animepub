@@ -9,7 +9,7 @@ const authReducer = (
 ) => {
 	switch (action.type) {
 		case AUTH:
-			// console.log(action?.data);
+			console.log(action?.data);
 			localStorage.setItem(
 				'profile',
 				JSON.stringify({ ...action?.data })

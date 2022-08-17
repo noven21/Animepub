@@ -6,6 +6,7 @@ import {
 	Container,
 	Grow,
 	Grid,
+	Paper,
 } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { getPosts } from '../../actions/posts';
@@ -14,6 +15,7 @@ import useStyles from '../../styles';
 
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
+import Pagination from '../Pagination/Pagination';
 
 const Home = () => {
 	const [currentId, setCurrentId] = useState(0);
@@ -42,6 +44,9 @@ const Home = () => {
 							currentId={currentId}
 							setCurrentId={setCurrentId}
 						/>
+						<Paper elevation={6}>
+							<Pagination />
+						</Paper>
 					</Grid>
 				</Grid>
 			</Container>

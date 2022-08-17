@@ -32,8 +32,7 @@ const Post = ({ post, setCurrentId }) => {
 			return post.likes.find(
 				(like) =>
 					like ===
-					(user?.result?.googleId ||
-						user?.result?._id)
+					(user?.result?.sub || user?.result?._id)
 			) ? (
 				<>
 					<ThumbUpAltIcon fontSize='small' />
@@ -80,14 +79,13 @@ const Post = ({ post, setCurrentId }) => {
 					{moment(post.createdAt).fromNow()}
 				</Typography>
 			</div>
-			{(user?.result?.googleId ===
-				post?.creator ||
+			{(user?.result?.sub === post?.creator ||
 				user?.result?._id === post?.creator) && (
 				<div className={classes.overlay2}>
 					<Button
+						onClick={() => setCurrentId(post._id)}
 						style={{ color: 'white' }}
 						size='small'
-						onClick={() => setCurrentId(post._id)}
 					>
 						<MoreHorizIcon fontSize='medium' />
 					</Button>
@@ -131,20 +129,17 @@ const Post = ({ post, setCurrentId }) => {
 					{/* <ThumbUpAltIcon fontSize='small' /> */}
 					<Likes />
 				</Button>
-				{(user?.result?.googleId ===
-					post?.creator ||
+				{(user?.result?.sub === post?.creator ||
 					user?.result?._id ===
 						post?.creator) && (
 					<Button
 						size='small'
-						color='primary'
-						type='button'
+						color='secondary'
 						onClick={() =>
 							dispatch(deletePost(post._id))
 						}
 					>
-						<DeleteIcon fontSize='small' />
-						Delete
+						<DeleteIcon fontSize='small' /> Delete
 					</Button>
 				)}
 			</CardActions>
