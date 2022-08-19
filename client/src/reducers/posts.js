@@ -3,6 +3,7 @@ import {
 	CREATE,
 	UPDATE,
 	DELETE,
+	FETCH_BY_SEARCH,
 } from '../constants/actionTypes';
 
 export default (posts = [], action) => {
@@ -17,6 +18,8 @@ export default (posts = [], action) => {
 					? action.payload
 					: post
 			);
+		case FETCH_BY_SEARCH:
+			return action.payload;
 		case FETCH_ALL:
 			return action.payload;
 		case CREATE:
