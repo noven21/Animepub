@@ -74,13 +74,15 @@ export const getPostsBySearch =
 	};
 
 export const createPost =
-	(post) => async (dispatch) => {
+	(post, history) => async (dispatch) => {
 		dispatch({ type: START_LOADING });
 
 		try {
 			const { data } = await api.createPost(post);
+			history.push(`/posts/${data._id}`);
 
 			dispatch({ type: CREATE, payload: data });
+
 			dispatch({ type: END_LOADING });
 		} catch (error) {
 			console.log(error);

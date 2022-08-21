@@ -17,6 +17,7 @@ import {
 } from '../../actions/posts';
 
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const Form = ({ currentId, setCurrentId }) => {
 	const [postData, setPostData] = useState({
@@ -27,7 +28,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	});
 	const post = useSelector((state) =>
 		currentId
-			? state.posts.find(
+			? state.posts.posts.find(
 					(p) => p._id === currentId
 			  )
 			: null
@@ -37,6 +38,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	const user = JSON.parse(
 		localStorage.getItem('profile')
 	);
+	const history = useHistory();
 
 	useEffect(() => {
 		if (post) setPostData(post);
@@ -57,10 +59,13 @@ const Form = ({ currentId, setCurrentId }) => {
 
 		if (currentId === 0) {
 			dispatch(
-				createPost({
-					...postData,
-					name: user?.result?.name,
-				})
+				createPost(
+					{
+						...postData,
+						name: user?.result?.name,
+					},
+					history
+				)
 			);
 			clear();
 		} else {
